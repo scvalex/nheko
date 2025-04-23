@@ -6,6 +6,8 @@ debug:
 		-Bbuild \
 		-DCMAKE_BUILD_TYPE=Debug \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
+		-DCOMPILE_QML=ON \
+		-DVOIP=OFF \
 		-DCMAKE_INSTALL_PREFIX=${DEPS_BUILD_DIR}/usr
 	@cmake --build build
 

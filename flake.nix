@@ -44,6 +44,9 @@
           re2
           spdlog
 
+          ninja
+          clang-tools
+
           # this is for the shellhook portion
           qt6.wrapQtAppsHook
           makeWrapper
