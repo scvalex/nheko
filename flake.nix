@@ -48,9 +48,17 @@
           clang-tools
 
           # this is for the shellhook portion
+          qt6.full
           qt6.wrapQtAppsHook
           makeWrapper
           bashInteractive
+          qtcreator
+
+          gst_all_1.gstreamer
+          gst_all_1.gst-plugins-base
+          (gst_all_1.gst-plugins-good.override { qt6Support = true; })
+          gst_all_1.gst-plugins-bad
+          libnice
         ];
 
         cmakeFlags = [
@@ -59,12 +67,12 @@
         NIXPKGS_ALLOW_INSECURE = "1";
 
         # set the environment variables that Qt apps expect
+        # if [ -z "${DIRENV_FILE: ""}" ]; then
+        # fi
         shellHook = ''
-          if not set -q DIRENV_FILE
-            bashdir=$(mktemp -d)
-            makeWrapper "$(type -p fish)" "$bashdir/fish" "''${qtWrapperArgs[@]}"
-            exec "$bashdir/fish"
-          end
+          bashdir=$(mktemp -d)
+          makeWrapper "$(type -p bash)" "$bashdir/bash" "''${qtWrapperArgs[@]}"
+          exec "$bashdir/bash"
         '';
       };
     };
