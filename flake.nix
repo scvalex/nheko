@@ -60,9 +60,11 @@
 
         # set the environment variables that Qt apps expect
         shellHook = ''
-          bashdir=$(mktemp -d)
-          makeWrapper "$(type -p fish)" "$bashdir/fish" "''${qtWrapperArgs[@]}"
-          exec "$bashdir/fish"
+          if not set -q DIRENV_FILE
+            bashdir=$(mktemp -d)
+            makeWrapper "$(type -p fish)" "$bashdir/fish" "''${qtWrapperArgs[@]}"
+            exec "$bashdir/fish"
+          end
         '';
       };
     };

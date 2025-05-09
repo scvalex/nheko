@@ -128,3 +128,6 @@ package.dir
 
 # Archives
 *.bz2
+
+# Direnv
+/.direnv
