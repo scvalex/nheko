@@ -21,6 +21,7 @@ TimelineEvent {
     required property bool isSender
     required property int index
     property var previousMessageDay: (index + 1) >= chat.count ? 0 : chat.model.dataByIndex(index + 1, Room.Day)
+    property var previousMessageTimestamp: (index + 1) >= chat.count ? 0 : chat.model.dataByIndex(index + 1, Room.Timestamp)
     property bool previousMessageIsStateEvent: (index + 1) >= chat.count ? true : chat.model.dataByIndex(index + 1, Room.IsStateEvent)
     property string previousMessageUserId: (index + 1) >= chat.count ? "" : chat.model.dataByIndex(index + 1, Room.UserId)
 
@@ -63,6 +64,7 @@ TimelineEvent {
                 isStateEvent: wrapper.isStateEvent
                 parentWidth: wrapper.width
                 previousMessageDay: wrapper.previousMessageDay
+                previousMessageTimestamp: wrapper.previousMessageTimestamp
                 previousMessageIsStateEvent: wrapper.previousMessageIsStateEvent
                 previousMessageUserId: wrapper.previousMessageUserId
                 timestamp: wrapper.timestamp
