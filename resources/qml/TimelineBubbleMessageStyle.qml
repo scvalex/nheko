@@ -47,6 +47,9 @@ TimelineEvent {
 
     property alias hovered: messageHover.hovered
 
+    property int oneHour: 60 * 60 * 1000
+    property bool showSection: wrapper.previousMessageDay !== wrapper.day || wrapper.timestamp - wrapper.previousMessageTimestamp > oneHour 
+
     mainInset: (threadId ? (4 + Nheko.paddingSmall) : 0) + 4
     replyInset: mainInset + 4 + Nheko.paddingSmall
 
@@ -58,7 +61,7 @@ TimelineEvent {
         Loader {
             id: section
 
-            active: wrapper.previousMessageUserId !== wrapper.userId || wrapper.previousMessageDay !== wrapper.day || wrapper.previousMessageIsStateEvent !== wrapper.isStateEvent
+            active: wrapper.previousMessageUserId !== wrapper.userId || wrapper.showSection || wrapper.previousMessageIsStateEvent !== wrapper.isStateEvent
             //asynchronous: true
             sourceComponent: TimelineSectionHeader {
                 day: wrapper.day
