@@ -2,6 +2,9 @@ DEPS_BUILD_DIR=.deps
 DEPS_SOURCE_DIR=deps
 
 debug:
+	@cmake --build build
+
+configure-debug:
 	@cmake -H. -GNinja \
 		-Bbuild \
 		-DCMAKE_BUILD_TYPE=Debug \
@@ -9,7 +12,6 @@ debug:
 		-DCOMPILE_QML=ON \
 		-DVOIP=OFF \
 		-DCMAKE_INSTALL_PREFIX=${DEPS_BUILD_DIR}/usr
-	@cmake --build build
 
 third-party:
 	@cmake -GNinja -H${DEPS_SOURCE_DIR} -B${DEPS_BUILD_DIR} \
